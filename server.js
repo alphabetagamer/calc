@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 const bodyParser = require('body-parser');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // viewed at http://localhost:8080
@@ -30,6 +31,7 @@ app.post('/', (req, res) => {
             if(c>=2)
             {
                 console.log("Wrong input");
+                res.end("Wrong Input");
                 break;
             }
             else if(j==i-1)
@@ -38,10 +40,14 @@ app.post('/', (req, res) => {
                 var g=eval(expr);
                 var myCallback = function(data) {
                     console.log(data);
+                    
+                    res.end(data.toString());
+                    
                   };
                   
                   var usingItNow = function(callback) {
                     callback(g);
+
                   };
                   usingItNow(myCallback);
                 console.log("Accepted");
