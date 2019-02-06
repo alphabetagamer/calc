@@ -69,13 +69,15 @@
               </style>
               <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
               <script>
-                function login() {
+                function login(event) {
+                  event.preventDefault();
                   const expr = $("#answer").val();
                   
             
                   $.post("http://localhost:8080/", { expr: expr}, (data, status) => {
-            
-                    
+                   console.log(data); 
+                   console.log(status);  
+                   $("#answer").val(data);             
             
                   });
                 }
@@ -85,7 +87,7 @@
     <body>
         <div id='calc-contain'>
   
-          <form name="calculator" onsubmit="login()">
+          <form name="calculator" onsubmit="login(event)">
             
             <input type="text" name="answer" id="answer" disabled />
             <br>
